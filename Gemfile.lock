@@ -145,7 +145,7 @@ DEPENDENCIES
   byebug
   pg (~> 1.1)
   puma (~> 5.0)
-  rack-cors
+  rack-cors (~> 1.1, >= 1.1.1)
   rails (~> 6.1.4, >= 6.1.4.1)
   tzinfo-data
 
