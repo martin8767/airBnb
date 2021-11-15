@@ -9,6 +9,7 @@ ruby '2.7.4'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'factory_bot_rails', '~> 6.2'
 gem 'faker', '~> 2.19'
+gem 'letter_opener', '~> 1.7'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
