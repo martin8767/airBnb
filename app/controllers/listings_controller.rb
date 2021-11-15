@@ -1,6 +1,7 @@
 class ListingsController < ApiController
   before_action :authenticate_user!
-  before_action :set_listing, only: %i[show update destroy]
+
+  helper_method :listing
 
   def index
     @listings = current_user.listings
@@ -19,14 +20,12 @@ class ListingsController < ApiController
   end
 
   def update
-    @listing.update!({})
+    listing.update!({})
     render :show
   end
 
   def destroy
-    if @listing
-      @listing.destroy!
-    end
+    listing.destroy!
   end
 
   private
@@ -39,7 +38,7 @@ class ListingsController < ApiController
     params
   end
 
-  def set_listing
-    @listing = Listing.find_by(id: params[:id])
+  def listing
+    @listing ||= Listing.find_by!(id: params[:id])
   end
 end
