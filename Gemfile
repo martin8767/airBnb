@@ -7,6 +7,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.2'
 
 gem 'activeadmin', '~> 2.9'
+gem 'arctic_admin', '~> 3.3'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bullet', '~> 6.1', '>= 6.1.5'
 gem 'devise', '~> 4.8'
