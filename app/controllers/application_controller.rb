@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationController < ActionController::API
-  include DeviseTokenAuth::Concerns::SetUserByToken
+class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def set_locale
