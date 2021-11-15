@@ -145,6 +145,8 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    jbuilder (2.11.3)
+      activesupport (>= 5.0.0)
     kwalify (0.7.2)
     launchy (2.5.0)
       addressable (~> 2.7)
