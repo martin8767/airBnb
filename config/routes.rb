@@ -10,12 +10,14 @@ Rails.application.routes.draw do
     registrations:      'api/v1/registrations',
     sessions:           'api/v1/sessions'
   }
-  
+
+  root 'home#index'
+
   namespace :api do
     namespace :v1, defaults: { format: :json } do
-      resources :listings
-      resources :users
-      root 'home#index'
+      devise_scope :user do
+        resources :listings
+      end
     end
   end
 end

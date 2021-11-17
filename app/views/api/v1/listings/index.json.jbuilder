@@ -1,1 +1,1 @@
-json.array! @listings, :id, :user
+json.listing @listings, :id, :user
