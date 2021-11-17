@@ -1,7 +1,6 @@
 module Api
   module V1
     class ListingsController < ApiController
-      before_action :authenticate_user!
 
       helper_method :listing
 
@@ -26,14 +25,6 @@ module Api
       end
 
       private
-
-      def listing_params
-        params
-      end
-
-      def update_params
-        params
-      end
 
       def listing
         @listing ||= Listing.find_by!(id: params[:id])

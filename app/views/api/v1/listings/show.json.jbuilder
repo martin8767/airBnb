@@ -1,1 +1,1 @@
-json.(listing, :id, :user)
+json.listing listing, :id, :user
