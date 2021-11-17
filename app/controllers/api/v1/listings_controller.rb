@@ -6,7 +6,7 @@ module Api
       helper_method :listing
 
       def index
-        @listings = current_user.listings
+        @listings = Listing.all
       end
 
       def show; end
