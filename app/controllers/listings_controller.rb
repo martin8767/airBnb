@@ -1,5 +1,4 @@
 class ListingsController < ApiController
-  before_action :authenticate_user!
   before_action :set_listing, only: %i[show update destroy]
 
   def index
