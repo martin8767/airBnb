@@ -11,8 +11,6 @@ Rails.application.routes.draw do
     sessions:       'api/v1/sessions'
   }
 
-  root 'home#index'
-
   namespace :api do
     namespace :v1, defaults: { format: :json } do
       devise_scope :user do
