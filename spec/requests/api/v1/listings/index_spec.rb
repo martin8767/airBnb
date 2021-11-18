@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "GET /api/v1/listings", type: :request do
+describe "GET api/v1/listings", type: :request do
   let(:user) { create(:user) }
   let!(:listing_1) { create(:listing, user: user) }
   let!(:listing_2) { create(:listing, user: user) }

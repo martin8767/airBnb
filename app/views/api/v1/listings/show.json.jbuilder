@@ -1,1 +1,1 @@
-json.listing listing, :id, :user
+json.listing listing, :id, :user, :updated_at
