@@ -21,7 +21,7 @@ module Api
       end
 
       def destroy
-        listing.destroy!
+        current_user.listings.find(params[:id]).destroy!
       end
 
       private

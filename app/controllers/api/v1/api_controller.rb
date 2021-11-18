@@ -1,7 +1,7 @@
 module Api
   module V1
     class ApiController < ActionController::API
-      include Api::Concerns::ActAsApiRequest
+      include Locallable
       include DeviseTokenAuth::Concerns::SetUserByToken
     
       before_action :authenticate_user!
@@ -9,7 +9,7 @@ module Api
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
     
       def not_found(e)
-        render json: { error: e.message }, status: :not_found
+        render json: { error: I18n.t('errors.not_found') }, status: :not_found
       end
     end
   end

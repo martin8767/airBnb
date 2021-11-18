@@ -1,36 +1,44 @@
+require 'rails_helper'
+
 describe 'GET api/v1/listings/:id', type: :request do
-  let(:email)                 { 'test@test.com' }
-  let(:first_name)            { 'usu' }
-  let(:last_name)             { 'ario' }
-
-  let(:user) { create(:user, first_name: first_name, email: email, last_name: last_name) }
+  let(:user) { create(:user) }
   let!(:listing) { create(:listing, user: user) }
+  let(:listing_id) { listing.id }
 
-  let!(:api_v1_listing_path)   { api_v1_listing(listing.id) }
+  subject { get api_v1_listing_path(listing_id), headers: headers, as: :json }
 
-  context 'When user is logged in' do
+  context 'when user is logged in' do
+    let(:headers) { auth_headers }
 
-    subject { get api_v1_listing_path, headers: auth_headers, as: :json }
-
-    it 'returns a successful response' do
-      subject
-      expect(response).to have_http_status(:success)
+    context 'when the listing id exists' do
+      it 'returns a successful status code' do
+        subject
+        expect(response).to have_http_status(:success)
+      end
+  
+      it 'returns the listing' do
+        subject
+  
+        expect(json[:listing][:id]).to eq(listing.id)
+        expect(json[:listing][:user][:first_name]).to eq(user.first_name)
+        expect(json[:listing][:user][:last_name]).to eq(user.last_name)
+        expect(json[:listing][:user][:email]).to eq(user.email)
+      end
     end
 
-    it 'returns the listing' do
-      subject
-
-      expect(json[:listing][:id]).to eq(listing.id)
-      expect(json[:listing][:user][:first_name]).to eq(user.first_name)
-      expect(json[:listing][:user][:last_name]).to eq(user.last_name)
-      expect(json[:listing][:user][:email]).to eq(user.email)
+    context 'when the listing id does not exist' do
+      let(:listing_id) { 'missing_id' }
+      it 'returns a not found status code' do
+        subject
+        expect(response).to have_http_status(:not_found)
+      end
     end
   end
 
-  context 'When user is not logged in' do
-    subject { get api_v1_listing_path, as: :json }
+  context 'when user is not logged in' do
+    let(:headers) { {} }
 
-    it 'returns unauthorized' do
+    it 'returns unauthorized status code' do
       subject
       expect(response).to have_http_status(:unauthorized)
     end

@@ -1,12 +1,8 @@
 describe 'POST api/v1/listings', type: :request do
-  let(:email)                 { 'test@test.com' }
-  let(:first_name)            { 'usu' }
-  let(:last_name)             { 'ario' }
-
-  let(:user) { create(:user, first_name: first_name, email: email, last_name: last_name) }
+  let(:user) { create(:user) }
   let(:listing) { Listing.last }
 
-  context 'When user is logged in' do
+  context 'when user is logged in' do
     subject { post api_v1_listings_path, params: params, headers: auth_headers, as: :json }
 
     let(:params) do
@@ -17,13 +13,13 @@ describe 'POST api/v1/listings', type: :request do
       }
     end
 
-    it 'returns a successful response' do
+    it 'returns a successful status code' do
       subject
       expect(response).to have_http_status(:success)
     end
 
     it 'creates the listing' do
-      expect { subject }.to change(Listing, :count).by(1)
+      expect { subject }.to change(Listing, :count).from(0).to(1)
     end
 
     it 'returns the listing' do
@@ -36,10 +32,10 @@ describe 'POST api/v1/listings', type: :request do
     end
   end
 
-  context 'When user is not logged in' do
+  context 'when user is not logged in' do
     subject { post api_v1_listings_path, as: :json }
 
-    it 'returns unauthorized' do
+    it 'returns unauthorized status code' do
       subject
       expect(response).to have_http_status(:unauthorized)
     end

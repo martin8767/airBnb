@@ -5,11 +5,10 @@ describe "GET api/v1/listings", type: :request do
   let!(:listing_1) { create(:listing, user: user) }
   let!(:listing_2) { create(:listing, user: user) }
 
-  context 'When user is logged in' do
+  context 'when user is logged in' do
     subject { get api_v1_listings_path, headers: auth_headers, as: :json }
 
-
-    it 'returns success' do
+    it 'returns success status code' do
       subject
       expect(response).to have_http_status(:success)
     end
@@ -20,13 +19,12 @@ describe "GET api/v1/listings", type: :request do
     end
   end
 
-  context 'When user is not logged in' do
+  context 'when user is not logged in' do
     subject { get api_v1_listings_path, as: :json }
 
-    it 'returns unauthorized' do
+    it 'returns unauthorized status code' do
       subject
       expect(response).to have_http_status(:unauthorized)
     end
   end
-  
 end
