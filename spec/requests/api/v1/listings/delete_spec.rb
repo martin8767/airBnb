@@ -1,11 +1,10 @@
 describe 'DELETE api/v1/listings', type: :request do
   let(:user) { create(:user) }
   let!(:listing) { create(:listing, user: user) }
-
-  let!(:api_v1_listing_path)   { "/api/v1/listings/#{listing.id}" }
+  let(:listing_id) { listing.id }
 
   context 'when user is logged in' do
-    subject { delete api_v1_listing_path, headers: auth_headers, as: :json }
+    subject { delete api_v1_listing_path(listing_id), headers: auth_headers, as: :json }
 
     let(:params) do
       {
@@ -26,7 +25,7 @@ describe 'DELETE api/v1/listings', type: :request do
   end
 
   context 'when user is not logged in' do
-    subject { put api_v1_listing_path, as: :json }
+    subject { delete api_v1_listing_path(listing_id), as: :json }
 
     it 'returns unauthorized status code' do
       subject

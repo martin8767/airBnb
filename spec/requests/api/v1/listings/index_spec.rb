@@ -15,7 +15,7 @@ describe "GET api/v1/listings", type: :request do
 
     it 'returns all listings' do
       subject
-      expect(json[:listing].size).to eq(2)
+      expect(json[:listings].size).to eq(2)
     end
   end
 

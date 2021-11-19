@@ -5,7 +5,8 @@ module Api
       helper_method :listing
 
       def index
-        @listings = current_user.listings
+        @listings = current_user.listings.includes([:amenities, 
+          :amenitizations, :categories, :categorizations, :media_files_attachments])
       end
 
       def show; end
