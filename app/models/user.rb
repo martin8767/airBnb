@@ -6,5 +6,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :listings
+  has_many :listings, dependent: :destroy
+
+  def display_name
+    "#{id} - #{email}"
+  end
 end

@@ -1,11 +1,12 @@
 module Api
   module V1
     class ListingsController < ApiController
+      before_action :authenticate_user!
 
       helper_method :listing
 
       def index
-        @listings = current_user.listings
+        @listings = Listing.all
       end
 
       def show; end
