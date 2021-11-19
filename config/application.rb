@@ -34,5 +34,7 @@ module AirBnb
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+
+    config.active_storage.replace_on_assign_to_many = false
   end
 end

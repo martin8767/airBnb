@@ -7,14 +7,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.2'
 
 gem 'activeadmin', '~> 2.9'
+gem 'active_storage_base64', '~> 1.2'
 gem 'arctic_admin', '~> 3.3'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise_token_auth', '~> 1.2'
+gem 'inherited_resources', '~> 1.13'
 gem 'jbuilder', '~> 2.11', '>= 2.11.3'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
+gem 'sass-rails', '~> 6.0'
 
 group :development, :test do
   gem 'bullet', '~> 6.1', '>= 6.1.5'

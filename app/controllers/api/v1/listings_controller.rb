@@ -11,12 +11,12 @@ module Api
       def show; end
 
       def create
-        @listing = current_user.listings.create!()
+        @listing = current_user.listings.create!(listing_params)
         render :show
       end
 
       def update
-        listing.update!({})
+        current_user.listings.find(params[:id]).update!(listing_params)
         render :show
       end
 
@@ -28,6 +28,14 @@ module Api
 
       def listing
         @listing ||= Listing.find_by!(id: params[:id])
+      end
+
+      def listing_params
+        params.require(:listing).permit(:description, :top_amount_people, :price_per_night, :location,
+          categorizations_attributes: [:id, :category_id, :name ], 
+          amenitizations_attributes: [:id, :amenity_id, :name ],
+          media_files: [:data, :filename]
+        )
       end
     end
   end

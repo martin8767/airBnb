@@ -1,1 +1,1 @@
-json.listing listing, :id, :user, :updated_at
+json.partial! listing, partial: 'listing', as: :listing
